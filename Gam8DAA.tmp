@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgqfj36svmb0r"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_dxupl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_45oua"]
+
+[sub_resource type="Sky" id="Sky_oj17t"]
+sky_material = SubResource("ProceduralSkyMaterial_45oua")
+
+[sub_resource type="Environment" id="Environment_ekdmg"]
+background_mode = 2
+sky = SubResource("Sky_oj17t")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icmh1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_rkyuc"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Env" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Env"]
+environment = SubResource("Environment_ekdmg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Env"]
+transform = Transform3D(1, 0, 0, 0, 0.881625, 0.471951, 0, -0.471951, 0.881625, 0, 4.83749, 10.6594)
+shadow_enabled = true
+
+[node name="Wall" type="StaticBody3D" parent="."]
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall"]
+transform = Transform3D(11.3253, 0, 0, 0, 11.8367, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_icmh1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Wall/CollisionShape3D"]
+mesh = SubResource("BoxMesh_rkyuc")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9.44408)
+fov = 92.0
+
+[node name="Player" type="Node3D" parent="Camera3D"]
+script = ExtResource("1_dxupl")
