@@ -48,6 +48,7 @@ near = 0.001
 script = ExtResource("1_dxupl")
 
 [node name="RayCast" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.106668)
-target_position = Vector3(0, 0, -1000)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.799999)
+target_position = Vector3(0, -1, -1000)
+collide_with_areas = true
 script = ExtResource("2_f0ybc")

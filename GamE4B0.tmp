@@ -40,14 +40,11 @@ skeleton = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.7144)
-current = true
 fov = 92.0
-near = 0.001
 
 [node name="Player" type="Node3D" parent="Camera3D"]
 script = ExtResource("1_dxupl")
 
-[node name="RayCast" type="RayCast3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.106668)
-target_position = Vector3(0, 0, -1000)
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, -1, -70)
 script = ExtResource("2_f0ybc")
