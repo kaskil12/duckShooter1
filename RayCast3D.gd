@@ -7,11 +7,15 @@ func _ready():
 	pass # Replace with function body.
 
 var Score = 0
-@onready var Textedits = $"../../../Control/TextEdit"
+@onready var label = $"../../../Control/Label"
+
+#audio
+@onready var ShootSound = $"../../AudioStreamPlayer3D"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	Textedits.text = str(Score)
+	label.text = "Score: " + str(Score)
 	if Input.is_action_just_pressed("shoot"):
+		ShootSound.play()
 		if is_colliding():
 			var collider = get_collider()
 			if collider:

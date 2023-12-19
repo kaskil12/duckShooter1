@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgqfj36svmb0r"]
+[gd_scene load_steps=13 format=3 uid="uid://bgqfj36svmb0r"]
 
 [ext_resource type="Script" path="res://Spawner.gd" id="1_8lwg0"]
 [ext_resource type="Script" path="res://Player.gd" id="1_dxupl"]
 [ext_resource type="Script" path="res://RayCast3D.gd" id="2_f0ybc"]
+[ext_resource type="AudioStream" uid="uid://b8je8rxyiiaog" path="res://cute_duck_wearing_party_hat/gun.mp3" id="4_5xkxf"]
 [ext_resource type="Texture2D" uid="uid://b8pktwxlbnlkm" path="res://cute_duck_wearing_party_hat/crosshair-icon-2048x2048-rbyju3l9.png" id="4_lcd5o"]
 [ext_resource type="PackedScene" uid="uid://dv5ocuowonhsy" path="res://low_poly_medieval_island/scene.gltf" id="4_uk3bg"]
+[ext_resource type="AudioStream" uid="uid://cg1n0a3mondkc" path="res://cute_duck_wearing_party_hat/farm.mp3" id="7_iafpv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_45oua"]
 
@@ -14,8 +16,6 @@ sky_material = SubResource("ProceduralSkyMaterial_45oua")
 [sub_resource type="Environment" id="Environment_ekdmg"]
 background_mode = 2
 sky = SubResource("Sky_oj17t")
-ssr_enabled = true
-ssao_enabled = true
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0184
 volumetric_fog_albedo = Color(0.541176, 0.843137, 0.92549, 1)
@@ -64,6 +64,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.106668)
 target_position = Vector3(0, 0, -1000)
 script = ExtResource("2_f0ybc")
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Player"]
+stream = ExtResource("4_5xkxf")
+
 [node name="Control" type="Control" parent="."]
 top_level = true
 layout_mode = 3
@@ -79,33 +82,36 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="Control"]
-top_level = true
-layout_mode = 0
-offset_right = 270.0
-offset_bottom = 45.0
-mouse_filter = 2
-mouse_force_pass_scroll_events = false
-theme_override_colors/background_color = Color(0, 0, 0, 0)
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_colors/font_selected_color = Color(0, 0, 0, 0)
-theme_override_colors/font_readonly_color = Color(1, 1, 1, 1)
-theme_override_colors/font_placeholder_color = Color(0, 0, 0, 0)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
-theme_override_colors/selection_color = Color(0, 0, 0, 0)
-theme_override_colors/current_line_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
-theme_override_colors/word_highlighted_color = Color(0, 0, 0, 0)
-theme_override_colors/search_result_color = Color(0, 0, 0, 0)
-theme_override_colors/search_result_border_color = Color(0, 0, 0, 0)
-text = "Score"
-editable = false
-
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 scale = Vector2(0.01, 0.01)
 texture = ExtResource("4_lcd5o")
 centered = false
 
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -937.0
+offset_top = -531.0
+offset_right = -320.0
+offset_bottom = -396.0
+theme_override_font_sizes/font_size = 71
+text = "Score:"
+
+[node name="FPS" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 604.0
+offset_top = -534.0
+offset_right = 1103.0
+offset_bottom = -298.0
+theme_override_font_sizes/font_size = 71
+text = "FPS: "
+
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("4_uk3bg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="Music" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.6884, 16.6191)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Music"]
+stream = ExtResource("7_iafpv")
+max_db = -21.0
+autoplay = true
